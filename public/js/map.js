@@ -69,7 +69,8 @@ $(function() {
 
 	info = new L.Control.Info().addTo(map);
 
-	$(info._container).hide();
+	$(info._container).css('opacity',0);
+	$(info._container).html('&nbsp;</br>&nbsp;');
 
 	L.control.zoom({
 		position: 'topleft'
@@ -98,12 +99,12 @@ $(function() {
 				onEachFeature: function(feature, layer) {
 					layer.on({
 						mouseover: function(e){
-							$(info._container).show();
-							$(info._container).html(e.target.feature.properties.block + " " +e.target.feature.properties.lot+"</br>"+e.target.feature.properties.property_address);
+							$(info._container).css('opacity',1);
+							$(info._container).html('<b>' + e.target.feature.properties.block + " " +e.target.feature.properties.lot+"</b></br>"+e.target.feature.properties.property_address);
 						},
 						mouseout: function(){
-							$(info._container).hide();
-							$(info._container).html('');
+							$(info._container).css('opacity',0);
+							$(info._container).html('&nbsp;</br>&nbsp;');
 						},
 						click: function(e){
 
@@ -184,12 +185,13 @@ $(function() {
 			onEachFeature: function(feature, layer) {
 				layer.on({
 					mouseover: function(e){
-						$(info._container).show();
-						$(info._container).html(e.target.feature.properties.LABEL);
+						var props = e.target.feature.properties;
+						$(info._container).css('opacity',1);
+						$(info._container).html('<b>' + props.LABEL + '</b></br>' + props.vacants + ' vacants of ' + props.properties + ' total properties (' + ((parseInt(props.vacants,10) / parseInt(props.properties, 10)) * 100).toFixed(1) + '% vacant)');
 					},
 					mouseout: function(){
-						$(info._container).hide();
-						$(info._container).html('');
+						$(info._container).css('opacity',0);
+						$(info._container).html('&nbsp;</br>&nbsp;');
 					},
 					click: function(e){
 						if (hood){

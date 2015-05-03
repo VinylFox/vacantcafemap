@@ -1,0 +1,20 @@
+{
+  "name": "vacantcafemap",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/VinylFox/vacantcafemap",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "leaflet": "~0.7.3",
+    "leaflet-draw": "~0.2.4"
+  }
+}
